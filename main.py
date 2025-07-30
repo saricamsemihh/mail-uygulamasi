@@ -9,6 +9,7 @@ import os
 import mail_database
 from dotenv import load_dotenv
 load_dotenv()
+from contextlib import asynccontextmanager
 
 # Kendi yazdığımız RabbitMQ yardımcı fonksiyonlarını içeri aktarıyoruz.
 from RabbitMQ_yardimci import send_message_to_queue, receive_messages_from_queue
@@ -16,10 +17,20 @@ from RabbitMQ_yardimci import send_message_to_queue, receive_messages_from_queue
 # FastAPI uygulamasının ana nesnesini oluşturuyoruz.
 app = FastAPI()
 
-@app.on_event("startup")
-def on_startup():
-    """Uygulama ilk çalıştığında bu fonksiyon tetiklenir."""
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Uygulama başlamadan önce yapılacaklar
+    print("Uygulama başlıyor...")
     mail_database.create_database_and_tables()
+    print("Veritabanı kontrolü tamamlandı.")
+
+    yield # Bu, uygulamanın çalıştığı süreyi temsil eder
+
+    # Uygulama kapandıktan sonra yapılacaklar (şimdilik boş)
+    print("Uygulama kapanıyor.")
+
+# FastAPI uygulamasına lifespan fonksiyonunu tanıtın
+app = FastAPI(lifespan=lifespan)
 
 # --- CORS Ayarları ---
 # Frontend'den (Necati'nin arayüzünden) gelecek isteklere izin vermek için gereklidir.
