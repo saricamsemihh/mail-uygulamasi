@@ -7,6 +7,8 @@ import json
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import mail_database
+from dotenv import load_dotenv
+load_dotenv()
 
 # Kendi yazdığımız RabbitMQ yardımcı fonksiyonlarını içeri aktarıyoruz.
 from RabbitMQ_yardimci import send_message_to_queue, receive_messages_from_queue
