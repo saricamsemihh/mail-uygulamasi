@@ -7,7 +7,7 @@ import os
 # değişiklik yapmadan çalışmasını sağlar.
 
 # 1. Lokal (Geliştirme) için varsayılan RabbitMQ adresi.
-LOCAL_RABBITMQ_URL = 'amqp://guest:guest@localhost:5672'
+LOCAL_RABBITMQ_URL = 'amqps://ivrivlyb:QhfouMJbiMktA6-Djs1FNWdwRIiZFma4@cow.rmq2.cloudamqp.com/ivrivlyb'
 
 # 2. Canlı ortam için ortam değişkenlerinden (environment variable) URL'yi okumaya çalışır.
 #    Eğer 'CLOUDAMQP_URL' isminde bir değişken bulamazsa, lokal adresi kullanır.

@@ -8,6 +8,7 @@ fastapi==0.116.1
 h11==0.16.0
 idna==3.10
 pika==1.3.2
+psycopg2-binary==2.9.10
 pydantic==2.11.7
 pydantic_core==2.33.2
 rabbitmq-helper==0.1.0
